@@ -29,6 +29,16 @@ public class ReadyQueue {
 	public void setReadyQ(ArrayList<Job> readyQ) {
 		this.readyQ = readyQ;
 	}
+	// Display 
+	public void display() {
+
+		for (int i = 0; i < this.readyQsize; i++) {
+			System.out.println(this.readyQ.get(i).getJobNum() + "   "
+					+ this.readyQ.get(i).getJobName() + "   "
+					+ this.readyQ.get(i).getSubmitter() + "     "
+					+ this.readyQ.get(i).getPriority());
+		}
+	}
 
 	// Insert job
 	public void insert(Job value) {

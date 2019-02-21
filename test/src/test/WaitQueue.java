@@ -103,12 +103,12 @@ public class WaitQueue {
 			else
 				minIndex = leftChildIndex;
 		} else {
-			if (this.waitQ.get(leftChildIndex).getPriority() <= this.waitQ.get(rightChildIndex).getPriority())
+			if (this.waitQ.get(leftChildIndex).getPriority() >= this.waitQ.get(rightChildIndex).getPriority())
 				minIndex = leftChildIndex;
 			else
 				minIndex = rightChildIndex;
 		}
-		if (this.waitQ.get(nodeIndex).getPriority() > this.waitQ.get(minIndex).getPriority() ) {
+		if (this.waitQ.get(nodeIndex).getPriority() < this.waitQ.get(minIndex).getPriority() ) {
 			Collections.swap(this.waitQ, minIndex, nodeIndex);
 			siftDown(minIndex);
 		}

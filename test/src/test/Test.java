@@ -25,15 +25,17 @@ public class Test {
 		// Step b: move 4 times jobs into ready queue
 		// Create a ready queue with 0 element
 		ReadyQueue rq = new ReadyQueue(0);
+		for(int i = 0; i< 4; i++) {
 		rq.insert(wQ.getWaitQ().get(0));
+		wQ.remove();
+		}
 		
+		System.out.println("\nAfter 4 times deletion(wait Q) and addition(ready Q)");
+		System.out.println("Wait Queue:");
+		wQ.display();
+		System.out.println("\nReady Queue:");
+		rq.display();
 		
-		
-
-        
-        
-        
-        
         
         
        }
