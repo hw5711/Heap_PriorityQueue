@@ -18,24 +18,26 @@ public class Test {
 		}
 		// Step a: Display unsorted wait queue
 		wQ.display();
+		
+		// Step b: sort wait queue and display
 		wQ.heapSort();
 		System.out.println("\nDisplay sorted wait queue( by priority).");
 		wQ.display();
 		
-		// Step b: move 4 times jobs into ready queue
+		// Step c: move 4 times jobs into ready queue
 		// Create a ready queue with 0 element
 		ReadyQueue rQ = new ReadyQueue(0);
 		for(int i = 0; i< 4; i++) {
 		rQ.insert(wQ.getWaitQ().get(0));
-		//System.out.println("rq size is "+ rQ.getReadyQsize());
 		wQ.remove();
 		}
-		
 		System.out.println("\nAfter 4 times deletion(wait Q) and addition(ready Q)");
 		System.out.println("Wait Queue:");
 		wQ.display();
 		System.out.println("\nReady Queue:");
 		rQ.display();
+		
+		// Step c:
 		
         
         
