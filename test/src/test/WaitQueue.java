@@ -86,7 +86,8 @@ public class WaitQueue {
 		if (this.waitQsize == 0)
 			System.out.println("Heap is empty");
 		else {
-			this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			//this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			this.waitQ.remove(0);
 			this.waitQsize--;
 			if (this.waitQsize > 0)
 				siftDown(0);

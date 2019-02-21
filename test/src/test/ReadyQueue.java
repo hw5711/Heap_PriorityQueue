@@ -42,20 +42,20 @@ public class ReadyQueue {
 
 	// Insert job
 	public void insert(Job value) {
-		if (this.readyQsize == this.readyQ.size())
-			System.out.println("Heap's underlying storage is overflow");
-		else {
+//		if (this.readyQsize == this.readyQ.size())
+//			System.out.println("Heap's underlying storage is overflow");
+//		else {
 			this.readyQsize++;
 			this.readyQ.add(this.readyQsize - 1,value);
 			siftUp(this.readyQsize - 1);
-		}
+//		}
 	}
 
 	private void siftUp(int nodeIndex) {
 		int parentIndex;
 		if (nodeIndex != 0) {
 			parentIndex = nodeIndex/2;
-			if (this.readyQ.get(parentIndex).getPriority() > this.readyQ.get(nodeIndex).getPriority()) {
+			if (this.readyQ.get(parentIndex).getPriority() < this.readyQ.get(nodeIndex).getPriority()) {
 				Collections.swap(this.readyQ, parentIndex, nodeIndex);
 				siftUp(parentIndex);
 			}
