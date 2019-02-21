@@ -37,7 +37,33 @@ public class Test {
 		System.out.println("\nReady Queue:");
 		rQ.display();
 		
-		// Step c:
+		// Step d: delete 2 jobs from ready queue and display
+		rQ.remove();
+		rQ.remove();
+		System.out.println("\nAfter removing 2 jobs form ready queue");
+		rQ.display();
+		
+		
+		// Step e: add 2 jobs into wait queue
+		for(int i = 0; i < 2; i++) {
+			String tempStr1 = "JobName2"+ Integer.toString(i);
+			String tempStr2 = "Submitter2"+Integer.toString(i);
+			int tempNum = 0 +  (int)(Math.random() * m + 1);
+			wQ.getWaitQ().add(new Job(200+i, tempStr1, tempStr2, tempNum));
+		}
+		// Move 3 jobs from wait queue to ready queue
+		for(int i = 0; i< 3; i++) {
+			rQ.insert(wQ.getWaitQ().get(0));
+			wQ.remove();
+		}
+		// Delete 1 job from ready queue
+		rQ.remove();
+		// Display
+		System.out.println("\nAfter step e");
+		System.out.println("Wait Queue:");
+		wQ.display();
+		System.out.println("\nReady Queue:");
+		rQ.display();
 		
         
         

@@ -114,5 +114,24 @@ public class WaitQueue {
 			siftDown(minIndex);
 		}
 	}
+	
+	// Add job 
+	// Insert job
+	public void insert(Job value) {
+			this.waitQsize++;
+			this.waitQ.add(this.waitQsize - 1,value);
+			siftUp(this.waitQsize - 1);
+	}
+
+	private void siftUp(int nodeIndex) {
+		int parentIndex;
+		if (nodeIndex != 0) {
+			parentIndex = nodeIndex/2;
+			if (this.waitQ.get(parentIndex).getPriority() < this.waitQ.get(nodeIndex).getPriority()) {
+				Collections.swap(this.waitQ, parentIndex, nodeIndex);
+				siftUp(parentIndex);
+			}
+		}
+	}
 
 }

@@ -42,13 +42,9 @@ public class ReadyQueue {
 
 	// Insert job
 	public void insert(Job value) {
-//		if (this.readyQsize == this.readyQ.size())
-//			System.out.println("Heap's underlying storage is overflow");
-//		else {
 			this.readyQsize++;
 			this.readyQ.add(this.readyQsize - 1,value);
 			siftUp(this.readyQsize - 1);
-//		}
 	}
 
 	private void siftUp(int nodeIndex) {
@@ -61,5 +57,41 @@ public class ReadyQueue {
 			}
 		}
 	}
+	
+	// Delete job
+	// Delete the root
+	public void remove() {
+		if (this.readyQsize == 0)
+			System.out.println("Heap is empty");
+		else {
+			//this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			this.readyQ.remove(0);
+			this.readyQsize--;
+			if (this.readyQsize > 0)
+				siftDown(0);
+		}
+	}
+
+	public void siftDown(int nodeIndex) {
+		int leftChildIndex, rightChildIndex, minIndex;
+		leftChildIndex = 2 * nodeIndex;
+		rightChildIndex = 2 * nodeIndex + 1;
+		if (rightChildIndex >= this.readyQsize) {
+			if (leftChildIndex >= this.readyQsize)
+				return;
+			else
+				minIndex = leftChildIndex;
+		} else {
+			if (this.readyQ.get(leftChildIndex).getPriority() >= this.readyQ.get(rightChildIndex).getPriority())
+				minIndex = leftChildIndex;
+			else
+				minIndex = rightChildIndex;
+		}
+		if (this.readyQ.get(nodeIndex).getPriority() < this.readyQ.get(minIndex).getPriority() ) {
+			Collections.swap(this.readyQ, minIndex, nodeIndex);
+			siftDown(minIndex);
+		}
+	}
+	
 
 }
