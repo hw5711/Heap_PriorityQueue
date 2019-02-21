@@ -39,7 +39,7 @@ public class WaitQueue {
 		}
 	}
 
-	//heap sort
+	// heap sort
 	public static void buildheap(ArrayList<Job> waitQ) {
 
 		for (int i = (waitQ.size() - 1) / 2; i >= 0; i--) {
@@ -51,13 +51,15 @@ public class WaitQueue {
 		int left = 2 * i + 1;
 		int right = 2 * i + 2;
 		int max;
-		if (left <= size && waitQ.get(left).getPriority() < waitQ.get(i).getPriority()) {
+		if (left <= size
+				&& waitQ.get(left).getPriority() < waitQ.get(i).getPriority()) {
 			max = left;
 		} else {
 			max = i;
 		}
 
-		if (right <= size && waitQ.get(right).getPriority() < waitQ.get(max).getPriority()) {
+		if (right <= size && waitQ.get(right).getPriority() < waitQ.get(max)
+				.getPriority()) {
 			max = right;
 		}
 		// If max is not current node, exchange it with max of left and right
@@ -68,8 +70,7 @@ public class WaitQueue {
 		}
 	}
 
-
-	public ArrayList<Job> heapSort() {
+	public void heapSort() {
 
 		buildheap(this.waitQ);
 		int sizeOfHeap = this.waitQ.size() - 1;
@@ -78,9 +79,39 @@ public class WaitQueue {
 			sizeOfHeap = sizeOfHeap - 1;
 			heapify(this.waitQ, 0, sizeOfHeap);
 		}
-		return this.waitQ;
-		//this.setWaitQ(this.waitQ);
-		
+	}
+
+	// Delete the root
+	public void remove() {
+		if (this.waitQsize == 0)
+			System.out.println("Heap is empty");
+		else {
+			this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			this.waitQsize--;
+			if (this.waitQsize > 0)
+				siftDown(0);
+		}
+	}
+
+	public void siftDown(int nodeIndex) {
+		int leftChildIndex, rightChildIndex, minIndex;
+		leftChildIndex = 2 * nodeIndex;
+		rightChildIndex = 2 * nodeIndex + 1;
+		if (rightChildIndex >= this.waitQsize) {
+			if (leftChildIndex >= this.waitQsize)
+				return;
+			else
+				minIndex = leftChildIndex;
+		} else {
+			if (this.waitQ.get(leftChildIndex).getPriority() <= this.waitQ.get(rightChildIndex).getPriority())
+				minIndex = leftChildIndex;
+			else
+				minIndex = rightChildIndex;
+		}
+		if (this.waitQ.get(nodeIndex).getPriority() > this.waitQ.get(minIndex).getPriority() ) {
+			Collections.swap(this.waitQ, minIndex, nodeIndex);
+			siftDown(minIndex);
+		}
 	}
 
 }
