@@ -29,7 +29,8 @@ public class ReadyQueue {
 	public void setReadyQ(ArrayList<Job> readyQ) {
 		this.readyQ = readyQ;
 	}
-	// Display 
+
+	// Display
 	public void display() {
 
 		for (int i = 0; i < this.readyQsize; i++) {
@@ -42,29 +43,30 @@ public class ReadyQueue {
 
 	// Insert job
 	public void insert(Job value) {
-			this.readyQsize++;
-			this.readyQ.add(this.readyQsize - 1,value);
-			siftUp(this.readyQsize - 1);
+		this.readyQsize++;
+		this.readyQ.add(this.readyQsize - 1, value);
+		siftUp(this.readyQsize - 1);
 	}
 
 	private void siftUp(int nodeIndex) {
 		int parentIndex;
 		if (nodeIndex != 0) {
-			parentIndex = nodeIndex/2;
-			if (this.readyQ.get(parentIndex).getPriority() < this.readyQ.get(nodeIndex).getPriority()) {
+			parentIndex = nodeIndex / 2;
+			if (this.readyQ.get(parentIndex).getPriority() < this.readyQ
+					.get(nodeIndex).getPriority()) {
 				Collections.swap(this.readyQ, parentIndex, nodeIndex);
 				siftUp(parentIndex);
 			}
 		}
 	}
-	
+
 	// Delete job
 	// Delete the root
 	public void remove() {
 		if (this.readyQsize == 0)
 			System.out.println("Heap is empty");
 		else {
-			//this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			// this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
 			this.readyQ.remove(0);
 			this.readyQsize--;
 			if (this.readyQsize > 0)
@@ -82,16 +84,17 @@ public class ReadyQueue {
 			else
 				minIndex = leftChildIndex;
 		} else {
-			if (this.readyQ.get(leftChildIndex).getPriority() >= this.readyQ.get(rightChildIndex).getPriority())
+			if (this.readyQ.get(leftChildIndex).getPriority() >= this.readyQ
+					.get(rightChildIndex).getPriority())
 				minIndex = leftChildIndex;
 			else
 				minIndex = rightChildIndex;
 		}
-		if (this.readyQ.get(nodeIndex).getPriority() < this.readyQ.get(minIndex).getPriority() ) {
+		if (this.readyQ.get(nodeIndex).getPriority() < this.readyQ.get(minIndex)
+				.getPriority()) {
 			Collections.swap(this.readyQ, minIndex, nodeIndex);
 			siftDown(minIndex);
 		}
 	}
-	
 
 }

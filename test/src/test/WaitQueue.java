@@ -86,7 +86,7 @@ public class WaitQueue {
 		if (this.waitQsize == 0)
 			System.out.println("Heap is empty");
 		else {
-			//this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
+			// this.waitQ.add(0,this.waitQ.get(this.waitQsize-1));
 			this.waitQ.remove(0);
 			this.waitQsize--;
 			if (this.waitQsize > 0)
@@ -104,30 +104,33 @@ public class WaitQueue {
 			else
 				minIndex = leftChildIndex;
 		} else {
-			if (this.waitQ.get(leftChildIndex).getPriority() >= this.waitQ.get(rightChildIndex).getPriority())
+			if (this.waitQ.get(leftChildIndex).getPriority() >= this.waitQ
+					.get(rightChildIndex).getPriority())
 				minIndex = leftChildIndex;
 			else
 				minIndex = rightChildIndex;
 		}
-		if (this.waitQ.get(nodeIndex).getPriority() < this.waitQ.get(minIndex).getPriority() ) {
+		if (this.waitQ.get(nodeIndex).getPriority() < this.waitQ.get(minIndex)
+				.getPriority()) {
 			Collections.swap(this.waitQ, minIndex, nodeIndex);
 			siftDown(minIndex);
 		}
 	}
-	
-	// Add job 
+
+	// Add job
 	// Insert job
 	public void insert(Job value) {
-			this.waitQsize++;
-			this.waitQ.add(this.waitQsize - 1,value);
-			siftUp(this.waitQsize - 1);
+		this.waitQsize++;
+		this.waitQ.add(this.waitQsize - 1, value);
+		siftUp(this.waitQsize - 1);
 	}
 
 	private void siftUp(int nodeIndex) {
 		int parentIndex;
 		if (nodeIndex != 0) {
-			parentIndex = nodeIndex/2;
-			if (this.waitQ.get(parentIndex).getPriority() < this.waitQ.get(nodeIndex).getPriority()) {
+			parentIndex = nodeIndex / 2;
+			if (this.waitQ.get(parentIndex).getPriority() < this.waitQ
+					.get(nodeIndex).getPriority()) {
 				Collections.swap(this.waitQ, parentIndex, nodeIndex);
 				siftUp(parentIndex);
 			}
